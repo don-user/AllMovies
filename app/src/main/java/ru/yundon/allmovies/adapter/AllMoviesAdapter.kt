@@ -41,30 +41,10 @@ class AllMoviesAdapter(private val onItemClickListener: ItemClickListener)
         @SuppressLint("SetTextI18n")
         fun bind(moviesListEntity: AllMoviesListEntity, onItemCallback: ItemClickListener) = with(viewBinding){
 
-            var cnt = 0.0
             tViewTitle.text = moviesListEntity.title
             tViewRelease.text = "$RELEASE_TEXT ${moviesListEntity.releaseDate}"
             tViewRating.text = moviesListEntity.voteAverage.toString()
-
-            ratingImage1.setImageResource( starRate(moviesListEntity.voteAverage ?: 0.0, cnt) )
-            cnt++
-            ratingImage2.setImageResource( starRate(moviesListEntity.voteAverage ?: 0.0, cnt) )
-            cnt++
-            ratingImage3.setImageResource( starRate(moviesListEntity.voteAverage ?: 0.0, cnt) )
-            cnt++
-            ratingImage4.setImageResource( starRate(moviesListEntity.voteAverage ?: 0.0, cnt) )
-            cnt++
-            ratingImage5.setImageResource( starRate(moviesListEntity.voteAverage ?: 0.0, cnt) )
-            cnt++
-            ratingImage6.setImageResource( starRate(moviesListEntity.voteAverage ?: 0.0, cnt) )
-            cnt++
-            ratingImage7.setImageResource( starRate(moviesListEntity.voteAverage ?: 0.0, cnt) )
-            cnt++
-            ratingImage8.setImageResource( starRate(moviesListEntity.voteAverage ?: 0.0, cnt) )
-            cnt++
-            ratingImage9.setImageResource( starRate(moviesListEntity.voteAverage ?: 0.0, cnt) )
-            cnt++
-            ratingImage10.setImageResource( starRate(moviesListEntity.voteAverage ?: 0.0, cnt) )
+            ratingBar.rating = moviesListEntity.voteAverage?.toFloat() ?: 0F
 
             Picasso.get()
                 .load(moviesListEntity.backdropPath)
