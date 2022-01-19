@@ -21,39 +21,53 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
-        android:id="@+id/iViewPoster"
+        android:id="@+id/iViewPosterFullScreen"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintVertical_weight="1"
-        android:scaleType="fitCenter"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarPoster"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintVertical_weight="0.8"
-        android:layout_margin="10dp"
         android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@+id/iViewPoster"
+        app:layout_constraintTop_toBottomOf="@id/toolbarPoster"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/tViewText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
-            android:lineSpacingExtra="8sp"
-            android:text="1 года выпуска \n 2021 года выпуска"
-            android:textStyle="italic|bold"
-            android:textColor="@color/black"/>
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iViewPoster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_launcher_foreground"/>
+
+            <TextView
+                android:id="@+id/tViewText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:lineSpacingExtra="8sp"
+                android:visibility="visible"
+                android:text="1 года выпуска \n 2021 года выпуска"
+                android:textStyle="italic|bold"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
 
     </ScrollView>
 

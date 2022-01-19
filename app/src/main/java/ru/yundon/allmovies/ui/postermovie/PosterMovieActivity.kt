@@ -60,6 +60,11 @@ class PosterMovieActivity : AppCompatActivity() {
             setVisibleImageFull(click)
             click = !click
         }
+
+        iViewPosterFullScreen.setOnClickListener {
+            setVisibleImageFull(click)
+            click = !click
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -74,8 +79,14 @@ class PosterMovieActivity : AppCompatActivity() {
         posterMovieViewModel.liveDataImage.observe(this, Observer {
 
             with(binding){
-                if (it == null) iViewPoster.setImageResource(R.drawable.ic_launcher_foreground)
-                else iViewPoster.setImageBitmap(it)
+                if (it == null) {
+                    iViewPoster.setImageResource(R.drawable.ic_launcher_foreground)
+                    iViewPosterFullScreen.setImageResource(R.drawable.ic_launcher_foreground)
+                }
+                else {
+                    iViewPoster.setImageBitmap(it)
+                    iViewPosterFullScreen.setImageBitmap(it)
+                }
             }
         })
     }
@@ -86,13 +97,14 @@ class PosterMovieActivity : AppCompatActivity() {
 
     private fun setVisibleImageFull(click: Boolean) = with(binding){
         if (!click){
-            scrollView.visibility = View.VISIBLE
-            toolbarPoster.visibility = View.VISIBLE
-            iViewPoster.scaleType = ImageView.ScaleType.FIT_CENTER
-        }else {
             scrollView.visibility = View.GONE
             toolbarPoster.visibility = View.GONE
-            iViewPoster.scaleType = ImageView.ScaleType.CENTER_CROP
+            iViewPosterFullScreen.visibility = View.VISIBLE
+
+        }else {
+            scrollView.visibility = View.VISIBLE
+            toolbarPoster.visibility = View.VISIBLE
+            iViewPosterFullScreen.visibility = View.GONE
         }
     }
 
